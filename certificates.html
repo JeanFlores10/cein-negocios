@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEIN - Centro de Negocios e Inversiones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <section id="consulta-certificados" class="consulta-certificados upper">
+        <div class="certificado-container">
+            <div class="certificado-card">
+                <div class="certificado-icon">
+                    <img src="images/logo.png" alt="CEIN Logo" class="logo">
+                </div>
+
+                <h2 class="uppercase">Certificado</h2>
+
+                <p>Ingresa tu número de documento para verificar y descargar tus certificados
+                    CEIN</p>
+
+                <form class="certificado-form" id="form-consulta-certificado">
+                    <div class="form-group">
+                        <label for="documento">Número de Documento o Código de Certificado</label>
+                        <input type="text" id="documento" name="documento" placeholder="Ej: 12345678 o CERT-12345"
+                            required>
+                    </div>
+
+                    <button type="submit" class="btn-buscar">
+                        <i class="fas fa-search"></i> Buscar Certificado
+                    </button>
+                </form>
+
+                <div class="resultados-certificado" id="resultados-certificado">
+                    <div class="resultado-header ">
+                        <h3>Resultados de la Búsqueda</h3>
+                    </div>
+                    <div class="resultado-body">
+                        <div class="info-certificado">
+                            <div class="info-item-certificado">
+                                <div class="info-label-certificado">Nombre Completo: </div>
+                                <div class="info-value-certificado" id="cert-nombre">Jordy Carmin</div>
+                            </div>
+                            <div class="info-item-certificado">
+                                <div class="info-label-certificado">Curso/Programa: </div>
+                                <div class="info-value-certificado" id="cert-curso">Programa de prueba 123 certificado</div>
+                            </div>
+                            <div class="info-item-certificado">
+                                <div class="info-label-certificado">Fecha de Emisión: </div>
+                                <div class="info-value-certificado" id="cert-fecha">15 de Noviembre, 2023</div>
+                            </div>
+                            <div class="info-item-certificado">
+                                <div class="info-label-certificado">Código de Verificación: </div>
+                                <div class="info-value-certificado" id="cert-codigo">CEIN-MD-2023-12345</div>
+                            </div>
+                        </div>
+
+                        <div class="estado-certificado estado-valido">
+                            <i class="fas fa-check-circle"></i> Certificado Válido y Verificado
+                        </div>
+
+                        <div class="acciones-certificado">
+                            <a href="#descargar" class="btn-descargar">
+                                <i class="fas fa-download"></i> Descargar PDF
+                            </a>
+                            <!-- <a href="#verificar" class="btn-verificar">
+                                <i class="fas fa-shield-alt"></i> Verificar Autenticidad
+                            </a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/certificates.js"></script>
+</body>
+
+</html>

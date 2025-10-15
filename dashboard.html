@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CEIN - Centro de Negocios e Inversiones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <aside class="admin-sidebar">
+        <div class="admin-sidebar-header">
+            <img src="images/logo.png"
+                alt="CEIN Admin" class="admin-sidebar-logo">
+            <div class="admin-user-info">
+                <div class="admin-user-name">Jordy Carmin</div>
+                <div class="admin-user-role">Administrador</div>
+            </div>
+        </div>
+
+        <nav>
+            <ul class="admin-sidebar-nav uppercase">
+                <li class="admin-nav-item">
+                    <a href="#dashboard" class="admin-nav-link active">
+                        <div>
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </div>
+                    </a>
+                </li>
+                <li class="admin-nav-item">
+                    <a href="#inicio" class="admin-nav-link">
+                        <div>
+                            <i class="fas fa-home"></i>
+                            <span>Inicio</span>
+                        </div>
+
+                    </a>
+                </li>
+                <li class="admin-nav-item">
+                    <a href="#servicios" class="admin-nav-link">
+                        <div>
+                            <i class="fas fa-concierge-bell"></i>
+                            <span>Servicios</span>
+                        </div>
+                        <span class="admin-nav-badge">3</span>
+                    </a>
+                </li>
+                <li class="admin-nav-item">
+                    <a href="#nosotros" class="admin-nav-link">
+                        <div>
+                            <i class="fas fa-users"></i>
+                            <span>Nosotros</span>
+                        </div>
+
+                    </a>
+                </li>
+                <li class="admin-nav-item">
+                    <a href="#exito" class="admin-nav-link">
+                        <div>
+                            <i class="fas fa-trophy"></i>
+                            <span>Casos de Éxito</span>
+                        </div>
+                        <span class="admin-nav-badge">5</span>
+                    </a>
+                </li>
+                <li class="admin-nav-item">
+                    <a href="#tienda" class="admin-nav-link">
+                        <div>
+                            <i class="fas fa-store"></i>
+                            <span>Tienda</span>
+                        </div>
+                        <span class="admin-nav-badge">12</span>
+                    </a>
+                </li>
+                <li class="admin-nav-item">
+                    <a href="#contacto" class="admin-nav-link">
+                        <div>
+                            <i class="fas fa-address-book"></i>
+                            <span>Contacto</span>
+                        </div>
+
+                        <span class="admin-nav-badge">8</span>
+                    </a>
+                </li>
+                <li class="admin-nav-item">
+                    <a href="#usuarios" class="admin-nav-link">
+                        <div>
+                            <i class="fas fa-user-cog"></i>
+                            <span>Usuarios</span>
+                        </div>
+
+                    </a>
+                </li>
+                <li class="admin-nav-item">
+                    <a href="#configuracion" class="admin-nav-link">
+                        <div>
+                            <i class="fas fa-cog"></i>
+                            <span>Configuración</span>
+                        </div>
+
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="admin-sidebar-footer">
+            <a href="#logout" class="admin-nav-link">
+                <div>
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Cerrar Sesión</span>
+                </div>
+
+            </a>
+        </div>
+    </aside>
+    <button class="admin-sidebar-toggle">
+        <i class="fas fa-bars"></i>
+    </button>
+    <div class="admin-content">
+        <section class="dashboard with-sidebar">
+            <div class="dashboard-container">
+                <div class="dashboard-header">
+                    <h2 class="dashboard-title">Panel de Control CEIN</h2>
+                    <a href="#logout" class="dashboard-logout">Cerrar Sesión</a>
+                </div>
+
+                <!-- <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">154</div>
+                <div class="stat-label">Visitas Hoy</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">28</div>
+                <div class="stat-label">Nuevos Contactos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Ventas Hoy</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">94%</div>
+                <div class="stat-label">Satisfacción</div>
+            </div>
+        </div> -->
+
+                <div class="dashboard-grid uppercase">
+                    <div class="dashboard-card ">
+                        <h3 ><i class="fas fa-home"></i> Inicio</h3>
+                        <ul class="dashboard-list">
+                            <li><a href="#">Editar Banner Principal <i class="fas fa-edit"></i></a></li>
+                            <li><a href="#">Modificar Texto Hero <i class="fas fa-edit"></i></a></li>
+                            <li><a href="#">Gestionar Botones CTA <i class="fas fa-edit"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-concierge-bell"></i> Servicios</h3>
+                        <ul class="dashboard-list">
+                            <li><a href="#">Agregar Nuevo Servicio <i class="fas fa-plus"></i></a></li>
+                            <li><a href="#">Editar Servicios Existentes <i class="fas fa-edit"></i></a></li>
+                            <li><a href="#">Gestionar Imágenes <i class="fas fa-image"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-users"></i> Nosotros</h3>
+                        <ul class="dashboard-list">
+                            <li><a href="#">Actualizar Historia <i class="fas fa-edit"></i></a></li>
+                            <li><a href="#">Modificar Misión/Visión <i class="fas fa-edit"></i></a></li>
+                            <li><a href="#">Gestionar Equipo <i class="fas fa-users-cog"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-trophy"></i> Casos de Éxito</h3>
+                        <ul class="dashboard-list">
+                            <li><a href="#">Agregar Testimonio <i class="fas fa-plus"></i></a></li>
+                            <li><a href="#">Editar Testimonios <i class="fas fa-edit"></i></a></li>
+                            <li><a href="#">Gestionar Clientes <i class="fas fa-user-tie"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-store"></i> Tienda</h3>
+                        <ul class="dashboard-list">
+                            <li><a href="#">Agregar Producto <i class="fas fa-plus"></i></a></li>
+                            <li><a href="#">Gestionar Inventario <i class="fas fa-boxes"></i></a></li>
+                            <li><a href="#">Ver Órdenes <i class="fas fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3><i class="fas fa-address-book"></i> Contacto</h3>
+                        <ul class="dashboard-list">
+                            <li><a href="#">Ver Mensajes <i class="fas fa-envelope"></i></a></li>
+                            <li><a href="#">Configurar Información <i class="fas fa-cog"></i></a></li>
+                            <li><a href="#">Gestionar Redes <i class="fas fa-share-alt"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Ejemplo de formulario de edición -->
+                <div class="dashboard-form d-none">
+                    <h3>Editar Servicio</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="service-title">Título del Servicio</label>
+                            <input type="text" id="service-title" value="Cursos Especializados">
+                        </div>
+                        <div class="form-group">
+                            <label for="service-price">Precio</label>
+                            <input type="text" id="service-price" value="S/ 199.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="service-image">Imagen</label>
+                            <input type="file" id="service-image">
+                        </div>
+                        <div class="form-group">
+                            <label for="service-description">Descripción</label>
+                            <textarea id="service-description"
+                                rows="4">Programas de formación diseñados para emprendedores...</textarea>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-save">Guardar Cambios</button>
+                        <button class="btn btn-cancel">Cancelar</button>
+                        <button class="btn btn-delete">Eliminar Servicio</button>
+                    </div>
+                </div>
+
+                <!-- Ejemplo de tabla de gestión -->
+                <table class="dashboard-table d-none">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Precio</th>
+                            <th>Ventas</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Curso Emprendedor Básico</td>
+                            <td>S/ 199.00</td>
+                            <td>156</td>
+                            <td>Activo</td>
+                            <td class="table-actions">
+                                <button class="btn btn-edit">Editar</button>
+                                <button class="btn btn-delete">Eliminar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Marketing Digital</td>
+                            <td>S/ 249.00</td>
+                            <td>89</td>
+                            <td>Activo</td>
+                            <td class="table-actions">
+                                <button class="btn btn-edit">Editar</button>
+                                <button class="btn btn-delete">Eliminar</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Asesoría Personalizada</td>
+                            <td>S/ 150.00</td>
+                            <td>42</td>
+                            <td>Activo</td>
+                            <td class="table-actions">
+                                <button class="btn btn-edit">Editar</button>
+                                <button class="btn btn-delete">Eliminar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>
