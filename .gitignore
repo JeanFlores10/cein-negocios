@@ -1,0 +1,251 @@
+# =====================================================
+# GITIGNORE PARA PROYECTO WEB ESTÁTICO CON SUPABASE
+# HTML, CSS, JS + GitHub Pages
+# =====================================================
+
+# =====================================================
+# ARCHIVOS DE CONFIGURACIÓN SENSIBLES
+# =====================================================
+# Variables de entorno con credenciales
+.env
+.env.local
+.env.production
+.env.development
+*.env
+
+# Archivos de configuración con secretos
+config.local.js
+secrets.js
+credentials.json
+
+# =====================================================
+# DEPENDENCIAS Y PAQUETES
+# =====================================================
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Bower
+bower_components/
+
+# =====================================================
+# ARCHIVOS DE SISTEMA OPERATIVO
+# =====================================================
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# =====================================================
+# EDITORES E IDEs
+# =====================================================
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# IntelliJ IDEA / WebStorm
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+Sessionx.vim
+.netrwhist
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# =====================================================
+# ARCHIVOS TEMPORALES Y CACHE
+# =====================================================
+# Logs
+logs/
+*.log
+
+# Cache
+.cache/
+*.cache
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# Archivos temporales
+tmp/
+temp/
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.old
+
+# =====================================================
+# BUILD Y DISTRIBUCIÓN
+# =====================================================
+# Si usas algún build tool, descomentar según necesites
+# dist/
+# build/
+# out/
+# .next/
+# .nuxt/
+# .vuepress/dist/
+
+# =====================================================
+# TESTING
+# =====================================================
+# Coverage reports
+coverage/
+*.coverage
+.nyc_output/
+*.lcov
+
+# Test results
+test-results/
+cypress/videos/
+cypress/screenshots/
+
+# =====================================================
+# DOCUMENTACIÓN Y NOTAS DE DESARROLLO
+# =====================================================
+# Archivos markdown de desarrollo (no de producción)
+TODO.md
+NOTAS.md
+DESARROLLO.md
+IMPLEMENTACION_*.md
+INSTRUCCIONES_*.md
+GUIA_*.md
+MEJORAS_*.md
+
+# Documentación privada
+docs/privado/
+notas/
+.notes/
+
+# =====================================================
+# BASE DE DATOS LOCAL
+# =====================================================
+# Archivos de base de datos local (si usas)
+*.sqlite
+*.sqlite3
+*.db
+database/*.sql
+!database/schema.sql
+!database/seed_courses.sql
+!database/create_admin.sql
+!database/fix_rls_policies.sql
+
+# Backups de BD
+*.dump
+*.backup
+
+# =====================================================
+# CERTIFICADOS Y LLAVES
+# =====================================================
+# Certificados SSL/TLS locales
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+
+# Llaves SSH
+id_rsa
+id_rsa.pub
+*.ppk
+
+# =====================================================
+# ARCHIVOS DE SUPABASE LOCAL
+# =====================================================
+# Si usas Supabase CLI local
+.supabase/
+supabase/.env
+.env.supabase
+
+# =====================================================
+# HERRAMIENTAS DE DESARROLLO
+# =====================================================
+# Claude Code
+.claude/
+
+# =====================================================
+# OTROS
+# =====================================================
+# Archivos comprimidos de respaldo
+*.zip
+*.tar.gz
+*.rar
+*.7z
+backups/
+
+# Archivos de análisis
+.eslintrc.local.js
+.prettierrc.local.js
+
+# NPM/Yarn
+.npmrc
+.yarnrc
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

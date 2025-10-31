@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    <!-- Botón para volver al inicio -->
+    <a href="index.html" class="btn-volver-inicio">
+        <i class="fas fa-arrow-left"></i> Volver al Inicio
+    </a>
+
     <section id="consulta-certificados" class="consulta-certificados upper">
         <div class="certificado-container">
             <div class="certificado-card">
@@ -75,7 +80,12 @@
             </div>
         </div>
     </section>
-    <script src="js/certificates.js"></script>
+    <!-- Supabase CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Scripts de Supabase -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/supabase-crud.js"></script>
+<script src="js/certificates-search.js"></script>
 </body>
 
 </html>
