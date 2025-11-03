@@ -214,8 +214,12 @@ document.addEventListener('DOMContentLoaded', async function() {
                 // Agregar animación de salida
                 document.querySelector('.login-container').style.animation = 'fadeOut 0.5s ease';
 
+                // Verificar rol del usuario y redirigir según corresponda
+                const profile = await getCurrentProfile();
+                const redirectUrl = profile && profile.role === 'admin' ? 'dashboard.html' : 'campus/index.html';
+
                 setTimeout(() => {
-                    window.location.href = 'dashboard.html';
+                    window.location.href = redirectUrl;
                 }, 1000);
             } else {
                 mostrarMensaje(resultado.error, 'error');

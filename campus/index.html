@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Virtual - CEIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/campus.css">
+</head>
+<body>
+    <!-- Navbar del Campus -->
+    <nav class="campus-navbar">
+        <div class="campus-navbar-container">
+            <div class="campus-navbar-logo">
+                <img src="../images/logo.png" alt="CEIN Logo">
+                <span>Campus Virtual</span>
+            </div>
+
+            <div class="campus-navbar-menu">
+                <a href="index.html" class="campus-nav-link active">
+                    <i class="fas fa-book"></i> Mis Cursos
+                </a>
+                <a href="my-certificates.html" class="campus-nav-link">
+                    <i class="fas fa-certificate"></i> Certificados
+                </a>
+                <a href="profile.html" class="campus-nav-link">
+                    <i class="fas fa-user"></i> Mi Perfil
+                </a>
+            </div>
+
+            <div class="campus-navbar-user">
+                <div class="campus-user-info">
+                    <span class="campus-user-name" id="user-name">Cargando...</span>
+                    <span class="campus-user-role">Estudiante</span>
+                </div>
+                <img src="../images/logo.png" alt="Avatar" class="campus-user-avatar" id="user-avatar">
+                <button class="campus-logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="campus-main">
+        <div class="campus-container">
+            <!-- Header -->
+            <div class="campus-header">
+                <h1><i class="fas fa-graduation-cap"></i> Mis Cursos</h1>
+                <p class="campus-subtitle">Accede a tus cursos y materiales de estudio</p>
+            </div>
+
+            <!-- Estadísticas Rápidas -->
+            <div class="campus-stats">
+                <div class="campus-stat-card">
+                    <div class="campus-stat-icon" style="background: linear-gradient(135deg, #9B11C0, #7a0d9a);">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="campus-stat-info">
+                        <div class="campus-stat-number" id="total-courses">0</div>
+                        <div class="campus-stat-label">Cursos Activos</div>
+                    </div>
+                </div>
+
+                <div class="campus-stat-card">
+                    <div class="campus-stat-icon" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="campus-stat-info">
+                        <div class="campus-stat-number" id="completed-courses">0</div>
+                        <div class="campus-stat-label">Completados</div>
+                    </div>
+                </div>
+
+                <div class="campus-stat-card">
+                    <div class="campus-stat-icon" style="background: linear-gradient(135deg, #ffc107, #ff9800);">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="campus-stat-info">
+                        <div class="campus-stat-number" id="total-certificates">0</div>
+                        <div class="campus-stat-label">Certificados</div>
+                    </div>
+                </div>
+
+                <div class="campus-stat-card">
+                    <div class="campus-stat-icon" style="background: linear-gradient(135deg, #17a2b8, #138496);">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="campus-stat-info">
+                        <div class="campus-stat-number" id="total-materials">0</div>
+                        <div class="campus-stat-label">Materiales</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filtros -->
+            <div class="campus-filters">
+                <button class="campus-filter-btn active" data-filter="all">
+                    <i class="fas fa-list"></i> Todos
+                </button>
+                <button class="campus-filter-btn" data-filter="active">
+                    <i class="fas fa-play-circle"></i> En Curso
+                </button>
+                <button class="campus-filter-btn" data-filter="completed">
+                    <i class="fas fa-check-circle"></i> Completados
+                </button>
+            </div>
+
+            <!-- Grid de Cursos -->
+            <div class="campus-courses-grid" id="courses-grid">
+                <!-- Los cursos se cargarán dinámicamente -->
+                <div class="campus-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Cargando tus cursos...</p>
+                </div>
+            </div>
+
+            <!-- Mensaje vacío -->
+            <div class="campus-empty-state" id="empty-state" style="display: none;">
+                <i class="fas fa-book-open"></i>
+                <h3>No tienes cursos inscritos</h3>
+                <p>Visita nuestro catálogo para inscribirte en un curso</p>
+                <a href="../index.html#cursos-tecnicos" class="btn">Ver Cursos Disponibles</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/storage-manager.js"></script>
+    <script src="../js/campus.js"></script>
+</body>
+</html>

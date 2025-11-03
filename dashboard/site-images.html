@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Imágenes - Dashboard CEIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/campus.css">
+</head>
+<body>
+    <div class="campus-container" style="margin-top: 2rem;">
+        <div class="campus-header">
+            <h1><i class="fas fa-images"></i> Gestión de Imágenes del Sitio</h1>
+            <p class="campus-subtitle">Sube y gestiona las imágenes que se muestran en el sitio web</p>
+        </div>
+
+        <!-- Categorías de Imágenes -->
+        <div class="campus-filters">
+            <button class="campus-filter-btn active" data-category="all" onclick="filterImages('all')">
+                <i class="fas fa-list"></i> Todas
+            </button>
+            <button class="campus-filter-btn" data-category="cursos" onclick="filterImages('cursos')">
+                <i class="fas fa-graduation-cap"></i> Cursos
+            </button>
+            <button class="campus-filter-btn" data-category="talleres" onclick="filterImages('talleres')">
+                <i class="fas fa-tools"></i> Talleres
+            </button>
+            <button class="campus-filter-btn" data-category="hero" onclick="filterImages('hero')">
+                <i class="fas fa-image"></i> Hero/Banner
+            </button>
+        </div>
+
+        <!-- Sección de Upload -->
+        <div class="course-section">
+            <h2><i class="fas fa-cloud-upload-alt"></i> Subir Nueva Imagen</h2>
+
+            <form id="upload-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="image-category">Categoría *</label>
+                        <select id="image-category" required>
+                            <option value="">Seleccionar categoría...</option>
+                            <option value="cursos">Cursos Académicos</option>
+                            <option value="talleres">Cursos Técnicos/Talleres</option>
+                            <option value="hero">Hero/Banner Principal</option>
+                            <option value="general">General/Otros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="image-name">Nombre de la imagen *</label>
+                        <input type="text" id="image-name" placeholder="Ej: excel, melamina, banner1" required>
+                        <small style="color: #666;">Solo letras, números y guiones. Sin espacios.</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="image-file">Archivo de imagen *</label>
+                    <input type="file" id="image-file" accept="image/jpeg,image/png,image/webp" required>
+                    <small style="color: #666;">Formatos aceptados: JPG, PNG, WEBP. Máximo 5MB.</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="image-description">Descripción (opcional)</label>
+                    <input type="text" id="image-description" placeholder="Descripción de la imagen">
+                </div>
+
+                <button type="submit" class="btn">
+                    <i class="fas fa-upload"></i> Subir Imagen
+                </button>
+            </form>
+        </div>
+
+        <!-- Grid de Imágenes -->
+        <div class="course-section">
+            <h2><i class="fas fa-folder-open"></i> Imágenes Subidas</h2>
+
+            <div class="materials-grid" id="images-grid">
+                <div class="campus-loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Cargando imágenes...</p>
+                </div>
+            </div>
+
+            <div class="campus-empty-state" id="images-empty" style="display: none;">
+                <i class="fas fa-images"></i>
+                <h3>No hay imágenes</h3>
+                <p>Sube tu primera imagen usando el formulario de arriba</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/storage-manager.js"></script>
+    <script>
+        let allImages = [];
+        let currentFilter = 'all';
+
+        // =====================================================
+        // INICIALIZACIÓN
+        // =====================================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadImages();
+            attachEventListeners();
+        });
+
+        // =====================================================
+        // CARGAR IMÁGENES
+        // =====================================================
+        async function loadImages() {
+            try {
+                // Cargar imágenes de todas las carpetas
+                const categories = ['cursos', 'talleres', 'hero', 'general'];
+                allImages = [];
+
+                for (const category of categories) {
+                    const { data, error } = await supabase.storage
+                        .from('site-images')
+                        .list(category, {
+                            limit: 100,
+                            offset: 0,
+                            sortBy: { column: 'created_at', order: 'desc' }
+                        });
+
+                    if (!error && data) {
+                        // Agregar el path completo a cada archivo
+                        const filesWithPath = data.map(file => ({
+                            ...file,
+                            name: `${category}/${file.name}`
+                        }));
+                        allImages.push(...filesWithPath);
+                    }
+                }
+
+                renderImages(allImages);
+            } catch (error) {
+                console.error('Error al cargar imágenes:', error);
+                showError('Error al cargar imágenes');
+            }
+        }
+
+        function renderImages(images) {
+            const grid = document.getElementById('images-grid');
+            const empty = document.getElementById('images-empty');
+
+            // Filtrar por categoría
+            let filtered = images;
+            if (currentFilter !== 'all') {
+                filtered = images.filter(img => img.name.startsWith(currentFilter + '/'));
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                empty.style.display = 'flex';
+                return;
+            }
+
+            empty.style.display = 'none';
+
+            const imagesHTML = filtered.map(image => {
+                const publicUrl = getPublicUrl(image.name);
+                const category = image.name.split('/')[0];
+                const fileName = image.name.split('/').pop();
+
+                return `
+                    <div class="material-card">
+                        <img src="${publicUrl}" alt="${fileName}" style="width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+
+                        <div class="material-title">${fileName}</div>
+                        <div class="material-meta">
+                            <i class="fas fa-folder"></i> ${category}
+                        </div>
+                        <div class="material-meta">
+                            <i class="fas fa-file"></i> ${formatFileSize(image.metadata?.size || 0)}
+                        </div>
+
+                        <div class="material-actions">
+                            <button class="material-btn material-btn-primary" onclick="copyImageUrl('${publicUrl}')">
+                                <i class="fas fa-copy"></i> Copiar URL
+                            </button>
+                            <button class="material-btn material-btn-secondary" onclick="deleteImage('${image.name}')">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            grid.innerHTML = imagesHTML;
+        }
+
+        function getPublicUrl(filePath) {
+            const { data } = supabase.storage
+                .from('site-images')
+                .getPublicUrl(filePath);
+
+            return data.publicUrl;
+        }
+
+        // =====================================================
+        // SUBIR IMAGEN
+        // =====================================================
+        async function uploadImage(e) {
+            e.preventDefault();
+
+            const category = document.getElementById('image-category').value;
+            const name = document.getElementById('image-name').value.toLowerCase().replace(/\s+/g, '-');
+            const file = document.getElementById('image-file').files[0];
+
+            if (!file) {
+                alert('Por favor selecciona un archivo');
+                return;
+            }
+
+            // Validar tamaño
+            if (file.size > 5 * 1024 * 1024) {
+                alert('El archivo es demasiado grande. Máximo 5MB');
+                return;
+            }
+
+            // Validar tipo
+            if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+                alert('Tipo de archivo no válido. Solo JPG, PNG o WEBP');
+                return;
+            }
+
+            try {
+                // Obtener extensión del archivo
+                const extension = file.name.split('.').pop();
+
+                // Crear path: categoria/nombre.extension
+                const filePath = `${category}/${name}.${extension}`;
+
+                // Subir archivo
+                const { data, error } = await supabase.storage
+                    .from('site-images')
+                    .upload(filePath, file, {
+                        cacheControl: '3600',
+                        upsert: true // Permitir sobrescribir
+                    });
+
+                if (error) throw error;
+
+                alert('✅ Imagen subida correctamente');
+                document.getElementById('upload-form').reset();
+                await loadImages();
+
+                // Mostrar URL
+                const publicUrl = getPublicUrl(filePath);
+                prompt('URL de la imagen (Ctrl+C para copiar):', publicUrl);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Error al subir imagen: ' + error.message);
+            }
+        }
+
+        // =====================================================
+        // COPIAR URL
+        // =====================================================
+        function copyImageUrl(url) {
+            navigator.clipboard.writeText(url).then(() => {
+                alert('✅ URL copiada al portapapeles');
+            }).catch(err => {
+                prompt('URL de la imagen:', url);
+            });
+        }
+
+        // =====================================================
+        // ELIMINAR IMAGEN
+        // =====================================================
+        async function deleteImage(filePath) {
+            if (!confirm('¿Estás seguro de eliminar esta imagen?')) return;
+
+            try {
+                const { error } = await supabase.storage
+                    .from('site-images')
+                    .remove([filePath]);
+
+                if (error) throw error;
+
+                alert('✅ Imagen eliminada correctamente');
+                await loadImages();
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Error al eliminar imagen: ' + error.message);
+            }
+        }
+
+        // =====================================================
+        // FILTROS
+        // =====================================================
+        function filterImages(category) {
+            currentFilter = category;
+
+            // Actualizar botones
+            document.querySelectorAll('.campus-filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+
+            renderImages(allImages);
+        }
+
+        // =====================================================
+        // UTILIDADES
+        // =====================================================
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        function showError(message) {
+            const grid = document.getElementById('images-grid');
+            grid.innerHTML = `
+                <div class="campus-empty-state">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <h3>Error</h3>
+                    <p>${message}</p>
+                    <button class="btn" onclick="loadImages()">Reintentar</button>
+                </div>
+            `;
+        }
+
+        // =====================================================
+        // EVENT LISTENERS
+        // =====================================================
+        function attachEventListeners() {
+            document.getElementById('upload-form').addEventListener('submit', uploadImage);
+        }
+    </script>
+</body>
+</html>

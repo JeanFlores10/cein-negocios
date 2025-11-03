@@ -25,11 +25,46 @@ document.addEventListener("DOMContentLoaded", function () {
       : '<i class="fas fa-bars"></i>';
   });
 
-  // Cerrar menú al hacer clic en un enlace
+  // Manejar dropdowns en móvil
+  const dropdowns = document.querySelectorAll('.dropdown');
+  dropdowns.forEach(dropdown => {
+    const dropdownToggle = dropdown.querySelector('.dropdown-toggle');
+
+    if (dropdownToggle) {
+      dropdownToggle.addEventListener('click', function(e) {
+        // Solo prevenir default en móvil
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+
+          // Cerrar otros dropdowns
+          dropdowns.forEach(otherDropdown => {
+            if (otherDropdown !== dropdown) {
+              otherDropdown.classList.remove('active');
+            }
+          });
+
+          // Toggle actual dropdown
+          dropdown.classList.toggle('active');
+        }
+      });
+    }
+  });
+
+  // Cerrar menú al hacer clic en un enlace (excepto dropdowns)
   document.querySelectorAll(".nav-links a").forEach((link) => {
-    link.addEventListener("click", () => {
+    link.addEventListener("click", (e) => {
+      // No cerrar si es un dropdown toggle en móvil
+      if (window.innerWidth <= 768 && link.classList.contains('dropdown-toggle')) {
+        return;
+      }
+
       navLinks.classList.remove("active");
       hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+
+      // Cerrar todos los dropdowns
+      dropdowns.forEach(dropdown => {
+        dropdown.classList.remove('active');
+      });
     });
   });
 

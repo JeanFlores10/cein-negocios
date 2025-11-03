@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - Dashboard CEIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .users-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .users-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .users-header h1 {
+            color: #9B11C0;
+        }
+
+        .btn-create-user {
+            background: #9B11C0;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-create-user:hover {
+            background: #7a0d9a;
+        }
+
+        .users-table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .users-table th {
+            background: #f5f5f5;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .users-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .users-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .user-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .user-status.confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .user-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .user-role {
+            text-transform: capitalize;
+        }
+
+        .btn-action {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            margin-right: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-confirm {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-confirm:hover {
+            background: #218838;
+        }
+
+        .btn-enroll {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-enroll:hover {
+            background: #138496;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background: #c82333;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            color: #9B11C0;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-full {
+            flex: 1;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="users-container">
+        <div class="users-header">
+            <h1><i class="fas fa-users"></i> Gestión de Usuarios</h1>
+            <button class="btn-create-user" onclick="openCreateUserModal()">
+                <i class="fas fa-user-plus"></i> Crear Estudiante
+            </button>
+        </div>
+
+        <div class="users-table-container">
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Estado Email</th>
+                        <th>Fecha Creación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="users-tbody">
+                    <tr>
+                        <td colspan="6" class="loading">
+                            <i class="fas fa-spinner fa-spin"></i> Cargando usuarios...
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal Crear Usuario -->
+    <div class="modal" id="create-user-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-user-plus"></i> Crear Nuevo Estudiante</h2>
+            </div>
+
+            <form id="create-user-form">
+                <div class="form-group">
+                    <label for="full-name">Nombre Completo *</label>
+                    <input type="text" id="full-name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Contraseña *</label>
+                    <input type="password" id="password" required minlength="6">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="tel" id="phone">
+                </div>
+
+                <p style="font-size: 0.85rem; color: #666; margin-bottom: 1rem;">
+                    <i class="fas fa-info-circle"></i> El email se confirmará automáticamente, no se enviará correo de verificación.
+                </p>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline btn-full" onclick="closeCreateUserModal()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-full" style="background: #9B11C0; color: white;">
+                        <i class="fas fa-save"></i> Crear Estudiante
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Inscribir en Curso -->
+    <div class="modal" id="enroll-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-book"></i> Inscribir en Curso</h2>
+            </div>
+
+            <form id="enroll-form">
+                <input type="hidden" id="enroll-user-email">
+
+                <div class="form-group">
+                    <label for="course-select">Seleccionar Curso *</label>
+                    <select id="course-select" required>
+                        <option value="">Cargando cursos...</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-outline btn-full" onclick="closeEnrollModal()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-full" style="background: #17a2b8; color: white;">
+                        <i class="fas fa-check"></i> Inscribir
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script>
+        let allUsers = [];
+        let allCourses = [];
+
+        // =====================================================
+        // INICIALIZACIÓN
+        // =====================================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadUsers();
+            await loadCourses();
+            attachEventListeners();
+        });
+
+        // =====================================================
+        // CARGAR USUARIOS
+        // =====================================================
+        async function loadUsers() {
+            try {
+                const { data: profiles, error: profilesError } = await supabase
+                    .from('profiles')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (profilesError) throw profilesError;
+
+                // Obtener información de auth.users para ver estado del email
+                const { data: { users }, error: usersError } = await supabase.auth.admin.listUsers();
+
+                allUsers = profiles.map(profile => {
+                    const authUser = users?.find(u => u.id === profile.id);
+                    return {
+                        ...profile,
+                        emailConfirmed: authUser?.email_confirmed_at ? true : false,
+                        confirmedAt: authUser?.email_confirmed_at
+                    };
+                });
+
+                renderUsers(allUsers);
+            } catch (error) {
+                console.error('Error al cargar usuarios:', error);
+                document.getElementById('users-tbody').innerHTML = `
+                    <tr><td colspan="6" style="text-align:center;color:#dc3545;">
+                        Error al cargar usuarios. Verifica los permisos de la API.
+                    </td></tr>
+                `;
+            }
+        }
+
+        function renderUsers(users) {
+            const tbody = document.getElementById('users-tbody');
+
+            if (users.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;">No hay usuarios registrados</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = users.map(user => `
+                <tr>
+                    <td>${user.full_name}</td>
+                    <td>${user.email}</td>
+                    <td class="user-role">${translateRole(user.role)}</td>
+                    <td>
+                        <span class="user-status ${user.emailConfirmed ? 'confirmed' : 'pending'}">
+                            ${user.emailConfirmed ? '<i class="fas fa-check-circle"></i> Confirmado' : '<i class="fas fa-clock"></i> Sin confirmar'}
+                        </span>
+                    </td>
+                    <td>${new Date(user.created_at).toLocaleDateString('es-PE')}</td>
+                    <td>
+                        ${!user.emailConfirmed ? `
+                            <button class="btn-action btn-confirm" onclick="confirmEmail('${user.email}')">
+                                <i class="fas fa-check"></i> Confirmar Email
+                            </button>
+                        ` : ''}
+                        ${user.role === 'student' ? `
+                            <button class="btn-action btn-enroll" onclick="openEnrollModal('${user.email}')">
+                                <i class="fas fa-book"></i> Inscribir
+                            </button>
+                        ` : ''}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function translateRole(role) {
+            const roles = {
+                'admin': 'Administrador',
+                'instructor': 'Instructor',
+                'student': 'Estudiante'
+            };
+            return roles[role] || role;
+        }
+
+        // =====================================================
+        // CREAR USUARIO
+        // =====================================================
+        function openCreateUserModal() {
+            document.getElementById('create-user-modal').classList.add('active');
+        }
+
+        function closeCreateUserModal() {
+            document.getElementById('create-user-modal').classList.remove('active');
+            document.getElementById('create-user-form').reset();
+        }
+
+        async function createStudent(e) {
+            e.preventDefault();
+
+            const fullName = document.getElementById('full-name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const phone = document.getElementById('phone').value;
+
+            try {
+                // Llamar a la función SQL
+                const { data, error } = await supabase.rpc('create_student_no_verification', {
+                    p_email: email,
+                    p_password: password,
+                    p_full_name: fullName,
+                    p_phone: phone || null
+                });
+
+                if (error) throw error;
+
+                if (data.success) {
+                    alert('✅ Estudiante creado exitosamente');
+                    closeCreateUserModal();
+                    await loadUsers();
+                } else {
+                    alert('❌ Error: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Error al crear estudiante: ' + error.message);
+            }
+        }
+
+        // =====================================================
+        // CONFIRMAR EMAIL
+        // =====================================================
+        async function confirmEmail(email) {
+            if (!confirm(`¿Confirmar el email de ${email}?`)) return;
+
+            try {
+                const { data, error } = await supabase.rpc('confirm_user_email', {
+                    user_email: email
+                });
+
+                if (error) throw error;
+
+                if (data.success) {
+                    alert('✅ Email confirmado correctamente');
+                    await loadUsers();
+                } else {
+                    alert('❌ Error: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Error al confirmar email: ' + error.message);
+            }
+        }
+
+        // =====================================================
+        // INSCRIBIR EN CURSO
+        // =====================================================
+        async function loadCourses() {
+            try {
+                const { data: courses, error } = await supabase
+                    .from('courses')
+                    .select('id, title')
+                    .eq('is_active', true)
+                    .order('title');
+
+                if (error) throw error;
+
+                allCourses = courses || [];
+
+                const select = document.getElementById('course-select');
+                select.innerHTML = '<option value="">Seleccionar curso...</option>' +
+                    courses.map(c => `<option value="${c.id}">${c.title}</option>`).join('');
+            } catch (error) {
+                console.error('Error al cargar cursos:', error);
+            }
+        }
+
+        function openEnrollModal(email) {
+            document.getElementById('enroll-user-email').value = email;
+            document.getElementById('enroll-modal').classList.add('active');
+        }
+
+        function closeEnrollModal() {
+            document.getElementById('enroll-modal').classList.remove('active');
+            document.getElementById('enroll-form').reset();
+        }
+
+        async function enrollStudent(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('enroll-user-email').value;
+            const courseId = document.getElementById('course-select').value;
+
+            try {
+                const { data, error } = await supabase.rpc('enroll_student_in_course', {
+                    p_user_email: email,
+                    p_course_id: courseId
+                });
+
+                if (error) throw error;
+
+                if (data.success) {
+                    alert('✅ Estudiante inscrito exitosamente');
+                    closeEnrollModal();
+                } else {
+                    alert('❌ Error: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('❌ Error al inscribir: ' + error.message);
+            }
+        }
+
+        // =====================================================
+        // EVENT LISTENERS
+        // =====================================================
+        function attachEventListeners() {
+            document.getElementById('create-user-form').addEventListener('submit', createStudent);
+            document.getElementById('enroll-form').addEventListener('submit', enrollStudent);
+        }
+    </script>
+</body>
+</html>

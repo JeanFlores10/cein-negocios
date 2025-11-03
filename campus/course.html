@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso - Campus Virtual CEIN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/campus.css">
+</head>
+<body>
+    <!-- Navbar del Campus -->
+    <nav class="campus-navbar">
+        <div class="campus-navbar-container">
+            <div class="campus-navbar-logo">
+                <img src="../images/logo.png" alt="CEIN Logo">
+                <span>Campus Virtual</span>
+            </div>
+
+            <div class="campus-navbar-menu">
+                <a href="index.html" class="campus-nav-link">
+                    <i class="fas fa-book"></i> Mis Cursos
+                </a>
+                <a href="my-certificates.html" class="campus-nav-link">
+                    <i class="fas fa-certificate"></i> Certificados
+                </a>
+                <a href="profile.html" class="campus-nav-link">
+                    <i class="fas fa-user"></i> Mi Perfil
+                </a>
+            </div>
+
+            <div class="campus-navbar-user">
+                <div class="campus-user-info">
+                    <span class="campus-user-name" id="user-name">Cargando...</span>
+                    <span class="campus-user-role">Estudiante</span>
+                </div>
+                <img src="../images/logo.png" alt="Avatar" class="campus-user-avatar" id="user-avatar">
+                <button class="campus-logout-btn" id="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="campus-main">
+        <div class="campus-container">
+            <!-- Breadcrumb -->
+            <div class="campus-breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Mis Cursos</a>
+                <i class="fas fa-chevron-right"></i>
+                <span id="course-breadcrumb">Cargando...</span>
+            </div>
+
+            <!-- Header del Curso -->
+            <div class="course-header">
+                <div class="course-header-content">
+                    <div class="course-header-info">
+                        <h1 id="course-title">Cargando curso...</h1>
+                        <p id="course-description">Descripción del curso</p>
+
+                        <div class="course-meta">
+                            <span class="course-meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span id="course-duration">-</span>
+                            </span>
+                            <span class="course-meta-item">
+                                <i class="fas fa-signal"></i>
+                                <span id="course-modality">-</span>
+                            </span>
+                            <span class="course-meta-item" id="course-status-badge">
+                                <i class="fas fa-check-circle"></i>
+                                <span>En curso</span>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="course-header-image">
+                        <img id="course-image" src="../images/cursos/imagen1.jpg" alt="Curso">
+                    </div>
+                </div>
+
+                <!-- Barra de Progreso -->
+                <div class="course-progress-bar">
+                    <div class="course-progress-info">
+                        <span>Progreso del curso</span>
+                        <span id="course-progress-text">0%</span>
+                    </div>
+                    <div class="course-progress-track">
+                        <div class="course-progress-fill" id="course-progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contenido del Curso -->
+            <div class="course-content-layout">
+                <!-- Sidebar de Navegación -->
+                <aside class="course-sidebar">
+                    <div class="course-sidebar-section">
+                        <h3><i class="fas fa-list"></i> Contenido del Curso</h3>
+                        <nav class="course-nav">
+                            <a href="#materials" class="course-nav-item active">
+                                <i class="fas fa-folder-open"></i> Materiales
+                            </a>
+                            <a href="#videos" class="course-nav-item">
+                                <i class="fas fa-video"></i> Videos
+                            </a>
+                            <a href="#documents" class="course-nav-item">
+                                <i class="fas fa-file-pdf"></i> Documentos
+                            </a>
+                            <a href="#tasks" class="course-nav-item">
+                                <i class="fas fa-tasks"></i> Tareas
+                            </a>
+                        </nav>
+                    </div>
+
+                    <div class="course-sidebar-section">
+                        <h3><i class="fas fa-info-circle"></i> Información</h3>
+                        <div class="course-info-list">
+                            <div class="course-info-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <div>
+                                    <strong>Inicio</strong>
+                                    <span id="enrollment-date">-</span>
+                                </div>
+                            </div>
+                            <div class="course-info-item">
+                                <i class="fas fa-file-alt"></i>
+                                <div>
+                                    <strong>Materiales</strong>
+                                    <span id="materials-count">0 archivos</span>
+                                </div>
+                            </div>
+                            <div class="course-info-item">
+                                <i class="fas fa-certificate"></i>
+                                <div>
+                                    <strong>Certificado</strong>
+                                    <span id="certificate-status">Gratuito</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="../index.html" class="btn btn-outline btn-full">
+                        <i class="fas fa-arrow-left"></i> Volver al Inicio
+                    </a>
+                </aside>
+
+                <!-- Contenido Principal -->
+                <div class="course-main-content">
+                    <!-- Sección de Materiales -->
+                    <section class="course-section" id="materials">
+                        <h2><i class="fas fa-folder-open"></i> Materiales del Curso</h2>
+
+                        <div class="materials-grid" id="materials-grid">
+                            <!-- Los materiales se cargarán dinámicamente -->
+                            <div class="campus-loading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                <p>Cargando materiales...</p>
+                            </div>
+                        </div>
+
+                        <div class="campus-empty-state" id="materials-empty" style="display: none;">
+                            <i class="fas fa-folder-open"></i>
+                            <h3>No hay materiales disponibles</h3>
+                            <p>Los materiales se agregarán pronto</p>
+                        </div>
+                    </section>
+
+                    <!-- Sección de Videos -->
+                    <section class="course-section" id="videos">
+                        <h2><i class="fas fa-video"></i> Videos</h2>
+
+                        <div class="materials-grid" id="videos-grid">
+                            <div class="campus-empty-state">
+                                <i class="fas fa-video"></i>
+                                <h3>No hay videos disponibles</h3>
+                                <p>Los videos se agregarán pronto</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Sección de Documentos -->
+                    <section class="course-section" id="documents">
+                        <h2><i class="fas fa-file-pdf"></i> Documentos PDF</h2>
+
+                        <div class="materials-grid" id="documents-grid">
+                            <!-- PDFs se cargarán aquí -->
+                        </div>
+                    </section>
+
+                    <!-- Sección de Tareas -->
+                    <section class="course-section" id="tasks">
+                        <h2><i class="fas fa-tasks"></i> Tareas y Actividades</h2>
+
+                        <div class="campus-empty-state">
+                            <i class="fas fa-tasks"></i>
+                            <h3>Próximamente</h3>
+                            <p>La funcionalidad de tareas estará disponible próximamente</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/storage-manager.js"></script>
+    <script src="../js/campus-course.js"></script>
+</body>
+</html>

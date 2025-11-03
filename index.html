@@ -4,11 +4,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CEIN - Centro de Negocios e Inversiones</title>
+
+    <!-- SEO Meta Tags -->
+    <title>CEIN - Centro de Negocios e Inversiones | Cursos Técnicos y Académicos en Huacho</title>
+    <meta name="description" content="Centro de capacitación técnica y empresarial en Huacho, Perú. Cursos de melamina, reparación de celulares, Excel, AutoCAD, marketing digital y más. Certificación gratuita. ¡Inscríbete ahora!">
+    <meta name="keywords" content="cursos técnicos Huacho, capacitación empresarial Perú, curso melamina, reparación celulares, Excel avanzado, AutoCAD, marketing digital, cursos presenciales Huacho, centro de capacitación Huacho, CEIN Huacho, cursos certificados Perú">
+    <meta name="author" content="CEIN - Centro de Negocios e Inversiones">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Spanish">
+    <meta name="geo.region" content="PE-LIM">
+    <meta name="geo.placename" content="Huacho">
+    <meta name="geo.position" content="-11.1066;-77.6046">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ceinnegocios.com/">
+    <meta property="og:title" content="CEIN - Cursos Técnicos y Empresariales en Huacho">
+    <meta property="og:description" content="Capacítate con los mejores cursos técnicos y empresariales. Melamina, celulares, Excel, AutoCAD y más. Certificación gratuita.">
+    <meta property="og:image" content="https://ceinnegocios.com/images/logo.png">
+    <meta property="og:locale" content="es_PE">
+    <meta property="og:site_name" content="CEIN - Centro de Negocios e Inversiones">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CEIN - Cursos Técnicos y Empresariales en Huacho">
+    <meta name="twitter:description" content="Capacítate con cursos de melamina, celulares, Excel, AutoCAD y más. Certificación gratuita.">
+    <meta name="twitter:image" content="https://ceinnegocios.com/images/logo.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://ceinnegocios.com/">
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
-
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "CEIN - Centro de Negocios e Inversiones",
+      "description": "Centro de capacitación técnica y empresarial en Huacho, Perú",
+      "url": "https://ceinnegocios.com",
+      "logo": "https://ceinnegocios.com/images/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Salaverry N° 536, 3er piso 303",
+        "addressLocality": "Huacho",
+        "addressRegion": "Lima",
+        "postalCode": "15136",
+        "addressCountry": "PE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-11.1066",
+        "longitude": "-77.6046"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+51-991-403-402",
+        "contactType": "Admissions",
+        "availableLanguage": "Spanish",
+        "areaServed": "PE"
+      },
+      "sameAs": [
+        "https://facebook.com/ceinnegocios",
+        "https://instagram.com/ceinnegocios"
+      ],
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": "Saturday",
+          "opens": "09:00",
+          "closes": "13:00"
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -42,8 +120,8 @@
                 </div>
             </nav>
 
-            <div class="header-cta" style="margin-top:12px;">
-                <a href="login.html" class="btn btn-dorado">Campus Virtual</a>
+            <div class="header-cta">
+                <a href="campus/index.html" class="btn btn-dorado">Campus Virtual</a>
             </div>
         </div>
     </header>
@@ -53,12 +131,16 @@
         <div class="slide active" style="background-image: url('images/talleres/armado_muebles.jpg')">
             <div class="overlay"></div>
             <div class="hero-text">
-                <h1 class="uppercase">Transforma tu visión en un negocio exitoso</h1>
-                <p>En CEIN te damos las herramientas y asesoría para impulsar tu emprendimiento.</p>
+                <h1 class="uppercase">Aprende un Oficio Técnico en Huacho</h1>
+                <p>Domina la carpintería en melamina, reparación de celulares y más. Cursos presenciales y virtuales con certificación gratuita. ¡Emprende tu propio negocio!</p>
                 <div class="hero-btns">
-                    <a href="https://wa.me/51991403402?text=Hola%20CEIN,%20me%20interesa%20recibir%20más%20información"
-                        class="btn" target="_blank">¡Quiero información!</a>
-                    <a href="#servicios" class="btn btn-dorado">Nuestros servicios</a>
+                    <a href="https://wa.me/51991403402?text=Hola%20CEIN,%20quiero%20información%20sobre%20los%20cursos%20técnicos"
+                        class="btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Consultar por WhatsApp
+                    </a>
+                    <a href="#cursos-tecnicos" class="btn btn-dorado">
+                        <i class="fas fa-tools"></i> Ver Cursos Técnicos
+                    </a>
                 </div>
             </div>
         </div>
@@ -66,10 +148,16 @@
         <div class="slide" style="background-image: url('images/cursos/excel.jpg')">
             <div class="overlay"></div>
             <div class="hero-text">
-                <h1 class="uppercase">Capacítate con los mejores especialistas</h1>
-                <p>Aprende estrategias empresariales para llevar tu idea al siguiente nivel.</p>
+                <h1 class="uppercase">Cursos de Excel, AutoCAD y Marketing Digital</h1>
+                <p>Capacitaciones empresariales en Excel avanzado, AutoCAD profesional, Facebook Ads y más. Instructores certificados en Huacho, Perú.</p>
                 <div class="hero-btns">
-                    <a href="#servicios" class="btn">Ver programas</a>
+                    <a href="https://wa.me/51991403402?text=Hola%20CEIN,%20me%20interesan%20los%20cursos%20académicos"
+                        class="btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Solicitar Información
+                    </a>
+                    <a href="#cursos-academicos" class="btn btn-dorado">
+                        <i class="fas fa-graduation-cap"></i> Ver Cursos Académicos
+                    </a>
                 </div>
             </div>
         </div>
@@ -77,10 +165,16 @@
         <div class="slide" style="background-image: url('images/cursos/CAMPAÑAS_PUBLICITARIAS.webp')">
             <div class="overlay"></div>
             <div class="hero-text">
-                <h1 class="uppercase">Conviértete en un líder innovador</h1>
-                <p>CEIN te acompaña en cada paso para que tu negocio crezca con éxito.</p>
+                <h1 class="uppercase">Centro de Capacitación Empresarial en Huacho</h1>
+                <p>17 cursos técnicos y académicos con certificación oficial. Horarios flexibles, modalidad presencial y virtual. Inscripciones abiertas todo el año.</p>
                 <div class="hero-btns">
-                    <a href="#contacto" class="btn btn-dorado">Contáctanos</a>
+                    <a href="https://wa.me/51991403402?text=Hola%20CEIN,%20quiero%20inscribirme%20en%20un%20curso"
+                        class="btn" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Inscribirme Ahora
+                    </a>
+                    <a href="#contacto" class="btn btn-dorado">
+                        <i class="fas fa-phone-alt"></i> Contactar
+                    </a>
                 </div>
             </div>
         </div>
@@ -1049,6 +1143,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="js/supabase-config.js"></script>
 <script src="js/supabase-crud.js"></script>
+<script src="js/storage-manager.js"></script>
 <script src="js/courses-display.js"></script>
 <script src="js/init.js"></script>
 </body>
