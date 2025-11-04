@@ -375,6 +375,10 @@ header.scrolled {
   align-items: center;
   justify-content: flex-start;
   padding-top: 120px;
+  background-position: center center; /* mejor centrado */
+  background-repeat: no-repeat;
+  image-rendering: -webkit-optimize-contrast; /* mejora nitidez */
+  image-rendering: crisp-edges; /* intenta mantener detalle */
 }
 
 .hero-slider .slide.active {
