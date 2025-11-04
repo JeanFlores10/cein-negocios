@@ -677,15 +677,15 @@ header.scrolled {
     background-color: rgba(194, 164, 90, 0.2);
     padding-left: 25px;
   }
-}
+
 
 /* Servicios */
 .servicios {
   background-color: var(--gris-claro);
-  padding: 80px 0;
   position: relative;
   z-index: 2;
 }
+
 
 .servicios .container {
   max-width: 1200px;
@@ -962,7 +962,6 @@ header.scrolled {
 /* Casos de éxito */
 .casos-exito {
   background-color: var(--gris-claro);
-  padding: 80px 0;
 }
 
 .casos-exito .container {
@@ -1106,7 +1105,6 @@ header.scrolled {
 }
 /* Tienda */
 .tienda {
-  padding: 80px 0;
   background-color: var(--blanco);
 }
 
@@ -1305,7 +1303,6 @@ header.scrolled {
 /* Contacto */
 
 .contacto {
-  padding: 80px 0;
   background-color: var(--gris-claro);
 }
 
@@ -2747,7 +2744,6 @@ footer {
 
 /* Sección de Consulta de Certificados */
 .consulta-certificados {
-  padding: 80px 0;
   background: linear-gradient(135deg, var(--gris-claro) 0%, #e8e8e8 100%);
 }
 
