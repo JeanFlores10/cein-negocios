@@ -1,0 +1,70 @@
+# robots.txt para CEIN - Centro de Negocios e Inversiones
+# https://ceinnegocios.com
+
+# Permitir a todos los bots de búsqueda principales
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /login.html
+Allow: /certificates.html
+
+# Bloquear acceso a áreas privadas y administrativas
+Disallow: /campus/
+Disallow: /dashboard/
+
+# Bloquear archivos y carpetas del sistema
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.env
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /database/
+
+# Permitir acceso a recursos públicos
+Allow: /css/
+Allow: /js/gtag.js
+Allow: /js/courses-display.js
+Allow: /images/
+
+# Directivas específicas para Googlebot
+User-agent: Googlebot
+Allow: /
+Disallow: /campus/
+Disallow: /dashboard/
+Crawl-delay: 1
+
+# Directivas específicas para Bingbot
+User-agent: Bingbot
+Allow: /
+Disallow: /campus/
+Disallow: /dashboard/
+Crawl-delay: 1
+
+# Directivas para bots de redes sociales (permitir acceso completo para Open Graph)
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Bloquear bots maliciosos conocidos
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap
+Sitemap: https://ceinnegocios.com/sitemap.xml
