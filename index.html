@@ -38,11 +38,25 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://ceinnegocios.com/">
 
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#d4af37">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="CEIN">
+    <link rel="apple-touch-icon" href="/images/logo.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Preconnect para recursos externos (mejora rendimiento) -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://i.pravatar.cc">
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data - Organización -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -87,6 +101,84 @@
           "dayOfWeek": "Saturday",
           "opens": "09:00",
           "closes": "13:00"
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD Structured Data - Breadcrumb -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://ceinnegocios.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Cursos Técnicos",
+          "item": "https://ceinnegocios.com/#cursos-tecnicos"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cursos Académicos",
+          "item": "https://ceinnegocios.com/#cursos-academicos"
+        }
+      ]
+    }
+    </script>
+
+    <!-- JSON-LD Structured Data - Ofertas de Cursos -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": [
+        {
+          "@type": "Course",
+          "name": "Armado y Diseño de Muebles en Melamina",
+          "description": "Curso técnico de carpintería en melamina",
+          "provider": {
+            "@type": "EducationalOrganization",
+            "name": "CEIN - Centro de Negocios e Inversiones"
+          },
+          "educationalCredentialAwarded": "Certificado Técnico"
+        },
+        {
+          "@type": "Course",
+          "name": "Reparación de Celulares y Tablets",
+          "description": "Curso técnico de reparación de dispositivos móviles",
+          "provider": {
+            "@type": "EducationalOrganization",
+            "name": "CEIN - Centro de Negocios e Inversiones"
+          },
+          "educationalCredentialAwarded": "Certificado Técnico"
+        },
+        {
+          "@type": "Course",
+          "name": "Excel Nivel Básico, Intermedio y Avanzado",
+          "description": "Curso académico de Microsoft Excel para empresas",
+          "provider": {
+            "@type": "EducationalOrganization",
+            "name": "CEIN - Centro de Negocios e Inversiones"
+          },
+          "educationalCredentialAwarded": "Certificado Académico"
+        },
+        {
+          "@type": "Course",
+          "name": "AutoCAD Básico, Intermedio y Avanzado",
+          "description": "Curso académico de diseño técnico con AutoCAD",
+          "provider": {
+            "@type": "EducationalOrganization",
+            "name": "CEIN - Centro de Negocios e Inversiones"
+          },
+          "educationalCredentialAwarded": "Certificado Académico"
         }
       ]
     }
@@ -244,7 +336,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/armado_muebles.jpg" alt="Curso de Armado y Diseño de Muebles en Melamina - CEIN Perú"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-graduation-cap"></i>
@@ -275,7 +367,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/reparacion_celulares.jpg" alt="Curso de Reparación de Celulares y Tablets - Certificado Gratis Perú"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-chalkboard-teacher"></i>
@@ -304,7 +396,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/estampados.jpg" alt="Curso de Serigrafía, Estampado, Sublimación y Vinil Textil - CEIN"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -334,7 +426,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/instalaciones.jpg" alt="Curso de Instalaciones Eléctricas Domiciliarias - Huacho Perú"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -363,7 +455,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/instalaciones_camaras.jpg" alt="Curso de Instalación de Cámaras de Seguridad CCTV - Certificado CEIN"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -393,7 +485,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/construccion_drywall.jpg" alt="Curso de Construcción en Drywall - Capacitación Técnica Perú"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -422,7 +514,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/reparacion_mantenimiento.jpg" alt="Curso de Reparación y Mantenimiento de PC, Laptops e Impresoras - CEIN"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -452,7 +544,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/construcciones_vidrio.jpg" alt="Curso de Construcción en Vidrio y Aluminio - Certificación Gratuita"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -481,7 +573,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/diseño_3d.jpg" alt="Curso de Diseño 3D de Muebles en Melamina con SketchUp - Perú"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -511,7 +603,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/barberia_profesional.jpg" alt="Curso de Barbería Profesional - Capacitación Técnica CEIN Huacho"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -541,7 +633,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/talleres/mantenimiento_aire_acondicionado.jpg"
-                            alt="Curso de Instalación y Mantenimiento de Aire Acondicionado - CEIN Perú" class="servicio-imagen">
+                            alt="Curso de Instalación y Mantenimiento de Aire Acondicionado - CEIN Perú" class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -582,7 +674,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/cursos/CAMPAÑAS_PUBLICITARIAS.webp" alt="Curso de Campañas Publicitarias en Facebook Ads y TikTok Ads - Marketing Digital Perú"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-graduation-cap"></i>
@@ -611,7 +703,7 @@
 
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
-                        <img src="images/cursos/excel.jpg" alt="Curso de Excel Nivel Básico, Intermedio y Avanzado - Certificado CEIN" class="servicio-imagen">
+                        <img src="images/cursos/excel.jpg" alt="Curso de Excel Nivel Básico, Intermedio y Avanzado - Certificado CEIN" class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-chalkboard-teacher"></i>
@@ -642,7 +734,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/cursos/AUTOCAD.jpg" alt="Curso de AutoCAD Básico, Intermedio y Avanzado - Diseño Construcción Perú"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -674,7 +766,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/cursos/lectura_planos.jpg" alt="Curso de Lectura de Planos para la Construcción Civil - CEIN Huacho"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -705,7 +797,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/cursos/IMPORTACIONES_MUNDO.jpg" alt="Curso de Importaciones del Mundo - Comercio Internacional Perú"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -735,7 +827,7 @@
                 <div class="servicio-card animate-on-scroll">
                     <div class="servicio-img">
                         <img src="images/cursos/BOLSA_VALORES.jpg" alt="Curso de Bolsa de Valores e Inversiones - Trading y Finanzas Perú"
-                            class="servicio-imagen">
+                            class="servicio-imagen" loading="lazy">
                         <div class="servicio-overlay">
                             <div class="servicio-icon">
                                 <i class="fas fa-handshake"></i>
@@ -777,7 +869,7 @@
                 <div class="testimonio-card animate-on-scroll">
                     <div class="testimonio-header">
                         <div class="testimonio-img">
-                            <img src="https://i.pravatar.cc/100?img=35" alt="María López">
+                            <img src="https://i.pravatar.cc/100?img=35" alt="María López" loading="lazy">
                         </div>
                         <div class="testimonio-author">
                             <h4>María López</h4>
@@ -805,7 +897,7 @@
                 <div class="testimonio-card animate-on-scroll">
                     <div class="testimonio-header">
                         <div class="testimonio-img">
-                            <img src="https://i.pravatar.cc/100?img=8" alt="Carlos Mendoza">
+                            <img src="https://i.pravatar.cc/100?img=8" alt="Carlos Mendoza" loading="lazy">
                         </div>
                         <div class="testimonio-author">
                             <h4>Carlos Mendoza</h4>
@@ -833,7 +925,7 @@
                 <div class="testimonio-card animate-on-scroll">
                     <div class="testimonio-header">
                         <div class="testimonio-img">
-                            <img src="https://i.pravatar.cc/100?img=27" alt="Lucía Rojas">
+                            <img src="https://i.pravatar.cc/100?img=27" alt="Lucía Rojas" loading="lazy">
                         </div>
                         <div class="testimonio-author">
                             <h4>Lucía Rojas</h4>
@@ -1082,7 +1174,7 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-info">
-                    <img src="images/logo.png" alt="CEIN Logo" class="footer-logo">
+                    <img src="images/logo.png" alt="CEIN Logo" class="footer-logo" loading="lazy">
 
                     <p>Somos un Centro de formación
                         empresarial con cursos
@@ -1160,12 +1252,27 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/supabase-config.js"></script>
-    <script src="js/supabase-crud.js"></script>
-    <script src="js/storage-manager.js"></script>
-    <script src="js/courses-display.js"></script>
-    <script src="js/init.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script defer src="js/supabase-config.js"></script>
+    <script defer src="js/supabase-crud.js"></script>
+    <script defer src="js/storage-manager.js"></script>
+    <script defer src="js/courses-display.js"></script>
+    <script defer src="js/init.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('Service Worker registrado exitosamente:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Error al registrar Service Worker:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 
 </html>

@@ -24,11 +24,37 @@
     <meta property="og:image" content="https://ceinnegocios.com/images/logo.png">
     <meta property="og:locale" content="es_PE">
 
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Validar Certificados CEIN - Verificación de Autenticidad">
+    <meta name="twitter:description" content="Verifica la autenticidad de certificados emitidos por CEIN. Sistema de validación online.">
+    <meta name="twitter:image" content="https://ceinnegocios.com/images/logo.png">
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://ceinnegocios.com/certificates.html">
 
+    <!-- Preconnect para recursos externos -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Validar Certificados CEIN",
+      "description": "Sistema de validación de certificados emitidos por CEIN - Centro de Negocios e Inversiones",
+      "url": "https://ceinnegocios.com/certificates.html",
+      "publisher": {
+        "@type": "EducationalOrganization",
+        "name": "CEIN - Centro de Negocios e Inversiones",
+        "url": "https://ceinnegocios.com"
+      }
+    }
+    </script>
 </head>
 
 <body>
@@ -41,7 +67,7 @@
         <div class="certificado-container">
             <div class="certificado-card">
                 <div class="certificado-icon">
-                    <img src="images/logo.png" alt="CEIN Logo" class="logo">
+                    <img src="images/logo.png" alt="CEIN Logo" class="logo" loading="lazy">
                 </div>
 
                 <h2 class="uppercase">Certificado</h2>
